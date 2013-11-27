@@ -1,0 +1,543 @@
+// 错误码定义 ： 通用错误码 + 模块错误码
+
+package protocols.common ;
+
+// 通用错误码 [0-100]
+enum ErrorCode
+{
+    EC_SUCCESS = 0 ;
+    EC_INVALID_REQUEST = 1 ;    // 非法请求
+    EC_ACTION_DENY = 2 ;        // 操作被拒绝
+    EC_DATA_ERROR = 3;          // 数据错误
+    EC_INVALID_ARGUMENT = 4;    // 非法参数
+    
+    EC_DISCONNECT_BY_ANOTHER_LOGIN = 5; // 重复登录，强制断线
+    EC_SERVER_IS_SHUT_DOWN  = 6; // 登陆时， 服务器正在关闭
+    EC_PLAYER_BANNED = 7;			// 玩家被ban
+    EC_USER_ID_EXHAUSED = 8;		// id空间耗尽， 客户端可以提示 该服务器玩家人数已满，请选择其他服务器游戏
+    EC_INVALID_NAME = 9; // 非法名字
+    EC_NAME_LENGTH_TOO_SHORT = 10 ;   // 名字长度太短
+    EC_NAME_LENGTH_TOO_LONG = 33; // 名字长度太长
+    EC_NAME_WITH_INVALID_CHARACTER = 11 ;  //名字含有非法字符
+    EC_NAME_EXIST = 12 ;           //名字已存在
+    
+    EC_CONDITION_NOT_SATISFIED = 13 ; // 请求条件不满足
+    EC_PROFESSION_INVALID = 14 ; // 职业不满足
+    EC_NO_ENOUGH_MONEY = 15 ;    // 金钱不够
+    EC_NO_ENOUGH_DIAMOND = 16;         // 钻石不够
+    EC_LEVEL_LIMIT = 17;         // 等级受限
+    EC_NUMBER_LIMIT = 18;        // 个数受限
+    
+    EC_TIME_NOT_SATISFIED = 19 ;  // 时间不满足
+    
+    EC_PLAYER_EXIST = 20 ;           // 玩家存在
+    EC_PLAYER_NOT_EXIST = 21 ;       // 玩家不存在
+    
+    
+    EC_STILL_COOL_DOWN = 22;                     // cd冷却中
+    
+    EC_CONFIG_NOT_FOUND = 23 ;  // 配置未找到
+    EC_DAILY_GIFT_ACCEPTED = 24; // 每日奖励已经领取过
+    EC_PLAYER_OFFLINE = 25 ; // 玩家不在线
+    EC_CREATE_PLAYER_NAME_USED = 26; // 该名字已经被使用
+	EC_PLAYER_FLAG_ALREAD_SET = 27; // 设置flag时，该flag已经设置过
+    
+    EC_NPC_NOT_FOUND = 28 ; // NPC 未找到
+    
+    EC_ENTER_INSTANCE_COUNT_LIMIT = 29 ;   // 进入关卡次数达到上限
+    
+    EC_SERVER_ERROR = 30 ; // 服务器错误
+    EC_FUNCTION_LIMIT = 31; // 功能受限
+    EC_NO_ENOUGH_COUPON = 32; // 礼券不够
+    
+    EC_NO_ENOUGH_MONSTER_EXP_BUFF_TIMES_LEFT = 34; // 没有足够的怪物经验buff次数
+    EC_DAILY_LIMIT_CANT_FIND = 35; // 玩家的每日限制无法找到
+    EC_DAILY_HUNT_LIMIT_CANT_FIND = 36; // 玩家的每日狩猎限制无法找到
+    
+    EC_CANT_FIND_FIGHT_DATA = 37; // 无法找到战斗数据
+    EC_SAVE_FIGHT_ERROR = 38;  // 保存战斗数据出错
+    EC_NPC_CONFIG_NOT_FOUND = 39; // NPC 配置未找到
+    EC_NPC_TOO_LONG_DISTANCE = 40 ;   //距离NPC过远
+    EC_PLAYER_FREEZE = 41 ;          //帐号被冻结
+    
+    EC_PHY_STR_NOT_ENOUGH = 42; // 体力值不足
+    EC_NOT_VIP = 43 ;        //非VIP
+    EC_VIP_LEVEL_LIMIT = 44 ;  //VIP等级不够
+
+    EC_NOT_ENOUGH_YOULI = 45; // 游历值不够
+    
+    EC_PLAYER_IS_DEAD = 46; // 玩家死亡状态中
+    EC_CONFIG_INVALID = 47; // 配置数据不合法
+    EC_NEW_MEMORY_FAILED = 48; // 内存分配失败
+    
+    EC_SCORE_IS_FULL = 49; //积分已经达到上限
+    EC_MEMBER_NO_ENOUGHT_DIAMOND = 50; // 队员钻石不足
+    
+    EC_ROLE_ID_NOT_ALLOC_CORRECT = 51; // 角色id未分配或者分配不成功，请换个账户或者联系管理员 
+    EC_PLAYER_LOGIN_STATUS_INVALID = 52; // 玩家账户登陆状态错误，请换个账户或者联系管理员 
+}
+
+// 英灵操作错误码 [101 - 200]
+enum BuddyErrorCode
+{
+    EC_YINGLING_EXIST = 101;   // 英灵已存在
+    EC_YINGLING_NOT_EXIST = 102;  // 英灵不存在
+    EC_CREATE_YINGLING_FAIL = 103; // 创建英灵失败
+    EC_NOT_HAVE_YINGLING = 104;    // 没有英灵
+    EC_YINGLING_NOT_EXIST_ON_FIRE = 105;  // 解雇时英灵不存在
+    EC_YINGLING_NO_FIRE_MYSELF = 106;  // 不能解雇自己
+    EC_YINGLING_SLOT_OPENED = 107; // 开启刷英灵点， 该点已经开启
+    EC_YINGLING_ILLEGAL_HIRING_SLOT = 108; //开启英灵点， 位置非法
+    EC_YINGLING_ILLEGAL_HIRE_POS = 109; //雇佣英灵， 位置非法
+    EC_YINGLING_ON_LINEUP = 110; // 英灵在阵型上
+    EC_YINGLING_ALREADY_HIRED = 111; //雇佣英灵，已经雇佣
+    EC_YINGLING_HIRE_NOT_ENOUGH_LINGLI = 112; // 灵力召唤英灵， 灵力不够
+    EC_YINGLING_NO_CHALLENGE_SPACE_TIME = 113;  // 红蓝色 英灵 不能挑战时空
+    EC_YINGLING_ILLEGAL_SLOT = 114; //开启英灵已雇佣点， 位置非法
+    EC_YINGLING_HIRE_REACH_MAX_NUM = 115;// 雇佣英灵数量到最大
+    EC_YINGLING_SLOT_OPENED_MAX = 116; // 开启英灵已雇佣点， 已经到最大值
+    EC_YINGLING_HIRING_SLOT_OPENED = 117 ; 
+	EC_YINGLING_NO_FIRE_WITH_EQUIPMENT = 118; //解雇英灵时候，有装备
+	EC_YINGLING_NO_FIRE_WITH_PRACTICE_SKILL = 119; //解雇英灵时候，有技能在修炼
+    
+    //灵魂强化yingling
+    EC_YINGLING_NO_SOUL_STONE = 120; //注入灵魂时候， 没有灵魂石
+    EC_YINGLING_NOT_ENOUGH_SOUL_STONE = 121; //注入灵魂时候， 灵魂石不够
+    EC_YINGLING_NO_FOUND_BUDDY = 122; //注入灵魂时候， 没有找到该yingling
+    EC_YINGLING_REACH_MAX_SOUL = 123; //注入灵魂时候， 已经到达最大值
+    EC_YINGLING_NOT_ENOUGH_COIN = 124; //注入灵魂时候，铜币不够
+    EC_YINGLING_REACH_MAX_SPACETIME = 125; //已经挑战完所有时空
+    EC_YINGLING_NOT_LINEUP_ON_CHALLENGE = 126;  //挑战时空时，选定buddy没有出战
+    EC_YINGLING_NO_PROTECT_ITEM = 127;    //注入灵魂时候，没有保护羽毛却选中使用保护羽毛
+    EC_YINGLING_NO_CHALLENGE_IN_TEAM = 128; // 在队伍中时候不能挑战时空
+    EC_YINGLING_CHALLENGE_STILL_COOL_DOWN = 129; // 英灵挑战  时空还在冷却
+    EC_YINGLING_NO_FIRE_WITH_FOLLOW = 130 ;          //解雇英灵时候，在跟随
+    EC_YINGLING_MAX_EXP_FULL		= 131 ;			//经验满了
+    EC_YINGLING_CANNOT_OWNER		= 132 ;			//不能对主角使用
+	EC_YINGLING_HIRE_NOT_ENOUGH_PIECES = 133 ;		//碎片召唤英灵不足
+}
+
+// 技能操作错误码 [201 - 300]
+enum SkillErrorCode
+{
+    EC_SKILL_NOT_IMPLEMENT = 201 ;  // 技能未实现
+    EC_SKILL_NOT_FOUND = 202 ;      // 技能未找到
+    EC_SKILL_INVALID = 203 ;        // 非法技能
+    EC_SKILL_SLOT_NOT_OPEN = 204 ;  // 技能槽未开放
+    EC_ALREADY_LEARNED = 205 ;      // 技能已经学习过
+    EC_SKILL_LEVEL_NO_CONFIG = 206 ; // 技能等级未配置
+    EC_SKILL_LEVEL_LIMIT = 207 ;     // 技能等级受限
+    EC_SKILL_IN_PRACTICING = 208 ; // 技能在修炼中
+    EC_SKILL_CONFIG_INVALID = 209; // 技能配置非法
+    EC_SKILL_TYPE_INVALID = 210; // 技能类型非法
+    EC_SKILL_IS_MAX_LEVEL = 211 ; // 技能等级达到最大值
+    EC_SKILL_PRACTICE_MAX_LIMIT = 212; // 技能同时修炼个数达到上限
+    EC_SKILL_CANT_DROP_WHILE_EQUIPED = 213; // 技能在装备时无法遗忘
+    EC_SKILL_NO_EFFECT = 214; // 技能buff不生效
+}
+
+// 物品操作错误码 [301 - 400]
+enum ItemErrorCode
+{
+    EC_ITEM_SUCCESS = 301 ;
+    EC_ITEM_INVALID_PLAYER = 302 ;   //非法或不存在的玩家
+    EC_ITEM_INVALID_SHOP = 303 ;     //非法或不存在的商店
+    EC_ITEM_INVALID_ITEM = 304 ;     //非法或不存在的道具
+    EC_ITEM_INVALID_COUNT = 305 ;     //非法道具数量
+    EC_ITEM_INVALID_POSITION = 306 ;  //非法道具位置
+    EC_ITEM_NO_ENOUGH_MONEY = 307 ;   //金钱不足
+    EC_ITEM_CANNOT_USE = 308 ;        //无法使用
+    EC_ITEM_MISMATCHED_JOB = 309 ;    //道具与职业不匹配
+    EC_ITEM_MISMATCHED_GENDER = 348; //道具与性别不匹配
+    EC_ITEM_MISMATCHED_POSITION = 310 ;   //装备与位置不匹配
+    EC_ITEM_NOT_FOUND = 311 ;          // 物品未找到
+    EC_BAG_IS_FULL = 312 ;             // 背包已满
+    EC_ADD_ITEM_TO_BAG_FAILED = 313 ; // 物品添加到背包错误
+    
+    EC_SHENGXING_NOT_FOUND_EQUIPMENT = 314;	//升星时， 没有找到装备
+	EC_SHENGXING_NOT_ENOUGH_MATERIAL = 315; //升星时， 没有足够材料
+    EC_SHENGXING_NOT_ENOUGH_MONEY = 316; //升星时， 没有足够金币
+    EC_SHENGXING_REACH_MAX_STRENGTH_LEVEL = 317; //升星时，已经到最高强化等级
+    EC_SHENGXING_UNSTRENGTHABLE = 318; //装备不能升星
+	EC_XILIAN_NOT_ENOUGH_MATERIAL = 319; // 洗练 没有足够材料
+	EC_XILIAN_NOT_ENOUGH_MONEY = 320; // 洗练 没钱
+	EC_XILIAN_UNXILIANABLE = 321; //装备不能洗练
+    
+    EC_NO_MOVE_QUEST_ITEM = 322; //任务物品不能换到仓库
+
+    EC_INHERIT_LEVEL_OUT_RANGE = 325; // 继承时候，装备等级超范围
+    EC_INHERIT_EQUIP_POS_MISMATCH = 326; // 继承时候，装备位置不同
+    EC_INHERIT_NOT_ENOUGH_MATERIAL = 327; // 继承时候，材料不够
+
+    EC_MAKE_SOCKET_REACH_MAX = 330; 	// 开孔时候, 已经到最大值
+    EC_NOT_ENOUGH_MATERIAL = 331;		// 没有足够的材料
+    EC_GEM_NO_INSERT_EQUIP = 332; // 宝石无法镶嵌到该装备上
+
+    EC_PICKUP_NO_THIS_ITEM = 335; // 拾取宝石塔任务的宝石时候, index无效
+    EC_PICKUP_ALREADY_PICKED = 336; // 拾取宝石塔任务的宝石时候, 物品已经被拾取
+    EC_PICKUP_BE_PICKING = 337; // 拾取宝石塔任务的宝石时候, 物品正在被他人拾取
+    EC_ONLY_LEADER_CAN_START_CRYSTAL = 338; // 只有会长可以开启
+
+    EC_WING_SYSTEM_ENABLE_L4_ALREADY_OPEND = 339;//已经点亮了
+    EC_WING_SYSTEM_ENABLE_L4_NOT_ENOUGH = 340; //没有足够的魔羽或者钻石
+    EC_WING_SYSTEM_LEVEL_DENIED = 341; //玩家级别不够
+
+    EC_WING_SYSTEM_SPIRIT_POOL_FULL = 342;//羽池已满
+    EC_WING_SYSTEM_SPIRIT_BAG_FULL = 343;//羽灵背包满
+    EC_WING_SYSTEM_SPIRIT_CANNOT_PICKED = 344; //此灵羽不允许拾取
+
+    EC_WING_SYSTEM_SPIRIT_MERGE_TOP_MAX = 345; //无法融合, 最高品质的材料羽灵已是最高级别
+    EC_WING_SYSTEM_SPIRIT_EXCHANGE_NOT_ENOUGH_FRAGMENT = 346;//无法兑换，没有足够的羽灵碎片
+    EC_WING_SYSTEM_SPIRIT_EQUIPT_SAME_ATTR = 347;//无法装备，已装备相同属性的羽灵
+
+    EC_NOT_ENOUGH_SPIRIT = 349;//灵魂值不够
+    EC_PRECIOUS_MERGE_MAX = 350; //能量值已达最大值
+    EC_PRECIOUS_REMAINED = 351; //解雇英灵身上装有宝具
+
+    EC_EQUIPMENT_EXTRA_ENHANCEMENT = 352; //装备不是白板（有强化或宝石等加强效果）
+    EC_NOT_ENOUGH_ITEM	= 353;	//没有足够的数量
+    EC_PRECIOUS_BATTLE_FAILED = 354; //宝具具现化时，战斗失败
+    EC_PRECIOUS_BATTLE_NO_ENOUGH_ENERGY = 355; //宝具能量不足，无法具现化
+    EC_PRECIOUS_BATTLE_ALREADY = 356; //宝具已经具现化
+    EC_ITEM_IS_NOT_PRECIOUS = 357; //物品不是宝具
+    EC_HAVE_OWN_YINGLING	= 358;//英灵已经拥有
+}
+
+// 阵型操作错误码 [401 - 500]
+enum LineupErrorCode
+{
+    EC_LINEUP_NAME_INVALID = 401 ; // 阵型名字非法
+    EC_LINEUP_CREATE_FAILED = 402 ; // 阵型创建失败 
+    EC_LINEUP_NOT_EXIST = 403 ;     // 阵型不存在
+    EC_LINEUP_MEMBER_FULL = 404 ;   // 阵型人员已满
+    EC_LINEUP_NO_MAIN_ROLE = 405 ;  // 阵型无主角
+    EC_LINEUP_NUMBER_LIMIT = 406 ;  // 玩家可创建阵型个数受限
+    EC_LINEUP_MEMBER_LIMIT = 407 ;  // 阵型人数受限
+    EC_LINEUP_ONE_YINGLING_LIMIT = 408 ; // 30级之前，只能上阵一个英灵 
+    EC_LINEUP_TWO_YINGLING_MAX = 409 ; //  30级之后，阵型只能上阵两个英灵
+    EC_CREATE_LINEUP_FAILED = 410; // 创建阵型失败
+    EC_LINEUP_INDEX_OVERFLOW = 411; // 阵型下标溢出
+
+}
+
+// 竞技场相关 [501 - 600]
+enum ArenaErrorCode
+{
+    EC_SELF_RANK_CHANGED = 501 ;   // 自身排名发生改变
+    EC_CHALLEGEE_RANK_CHANGED = 502 ; // 被挑战者排名发生改变 
+    EC_SNAP_PLAYER_NOT_FOUND = 503 ; // 玩家快照数据找不到
+    EC_CHALLENGE_TIME_USE_OUT = 504; // 挑战次数使用完
+    EC_BOX_ALREADY_TAKEN = 505 ;     // 宝箱已领取
+    EC_ARENA_CHALLENGEE_IN_COOL_DOWN = 506 ; // 竞技场战斗冷却中
+    EC_CHALLENGE_LEVEL_LIMIT = 507; // 等级不够
+    EC_ARENA_CHALLENGEE_NOT_ENOUGH = 508 ; // 竞技场挑战者个数不足
+}
+
+// 任务相关 [601 - 700]
+enum QuestErrorCode
+{
+    EC_QUEST_ALREADY_ACCEPTED = 601;	//接任务时 任务已经接取
+    EC_QUEST_NOT_ACCEPTED = 602;		// 取消任务时， 未接取
+    EC_QUEST_INVENTORY_FULL_ON_ACCEPT = 603; //接任务时候，背包满，无法放置任务物品
+    EC_QUEST_CONDITION_NOT_SATISFIED = 604; //任务条件未达成，
+	EC_QUEST_DAILY_STILL_COOL_DOWN = 605; // 每日任务 刷新 还在cd
+	EC_QUEST_DAILY_QUEST_NO_CANCEL = 606; // 每日任务不能放弃
+	EC_QUEST_REFRESH_DAILY_QUEST_NO_YUANBAO = 607; // 元宝刷新每日任务时候，元宝不够
+	EC_QUEST_REACH_MAX_PURCHASE_COUNT = 608; // 购买每日任务次数时候， 已经到最大购买次数
+	EC_QUEST_REACH_MAX_DAILY_COUNT = 609; // 完成每日任务， 到达最大限制
+	EC_QUEST_GENERATE_REACH_MAX_PURCHASE_COUNT = 610; // 刷新每日任务， 已经到最大购买次数
+	EC_QUEST_GENERATE_REACH_MAX_DAILY_COUNT = 611; // 刷新每日任务，  到达最大限制
+	EC_QUEST_REACH_MAX_DAILY_ACCEPTED_COUNT = 612; // 接取每日任务时候，身上已接  到达最大限制
+    EC_DAILY_QUEST_COUNT_LIMIT = 613;  //同时只能领取最多不超过五个悬赏任务！
+    EC_DAILY_QUEST_COME_MAX = 614;     // 今日可完成悬赏任务数已达上限，您可以购买额外的次数！
+
+    EC_XUNLUO_QUEST_ACCEPT_NOT_IN_TEAM = 615; // 巡逻任务必须组队接取
+    EC_XUNLUO_QUEST_ACCEPT_LESS_TEAM_MEMBER = 616; // 队伍中在线人数>=2
+    EC_XUNLUO_QUEST_ACCEPT_MEMBER_LEVEL_LESS= 617; // 队员等级不够
+    EC_XUNLUO_QUEST_ACCEPT_MEMBER_ALREADY_ACCEPT = 618; // 队员已经接取
+    EC_XUNLUO_QUEST_ACCEPT_MEMBER_STILL_COOLDOWN = 619; // 队员接取cd中
+	EC_XUNLUO_QUEST_LIMIT_COUNT = 620; // 巡逻任务次数限制
+
+    EC_YOULI_RESET_MAP_NOT_ALLOWED = 650; // 重置地图时候, 地图已经开始
+    EC_YOULI_RESET_MAP_LIMIT_COUNT = 651; // 重置地图次数限制
+	EC_QUEST_NOT_ENOUGH_QUEST_ITEM	= 652;//背包任务物品不足
+}
+
+// 组队相关 [701 - 800]
+enum TeamErrorCode
+{
+    EC_TEAM_INVALID_REQUEST = 701 ; // 队伍非法请求
+    EC_TEAM_NO_SUITABLE_TEAM = 702 ; // 没有合适的队伍
+    EC_TEAM_PLAYER_IN_TEAM = 703 ; // 玩家已处于队伍中
+    EC_TEAM_ALREADY_APPLIED = 704 ; // 已经处于申请状态
+    EC_TEAM_PLAYER_OFFLINE = 705 ;  // 玩家已离线
+    EC_TEAM_PLAYER_IN_CUSTOM_PASS = 706 ; // 玩家处于关卡
+    EC_TEAM_PLAYER_NOT_EXIST = 707; // 目标玩家不存在
+    EC_TEAM_IS_FULL = 708;  // 队伍人数已满
+    EC_TEAM_PLAYER_LEVEL_NOT_SATISFIED = 709; // 队伍中玩家等级不足
+    EC_TEAM_CREATE_FAILED = 710 ;  // 创建队伍失败
+    EC_TEAM_NOT_EXIST = 711 ;   // 队伍不存在
+    EC_TEAM_NO_LEADER = 712 ;   // 队伍无队长
+    EC_TEAM_INVITE_REJECTED = 713 ; // 邀请入队被对方拒绝
+    EC_TEAM_FIGHTER_NOT_FOUND = 714 ; // 战斗者无法找到(阵型设置中)
+    EC_CANT_CHALLENGE_IN_TEAM = 715 ; // 组队状态不能竞技
+    EC_TEAM_NOT_AT_SAME_MAP = 716;  // 和队长不在同一地图
+    EC_TEAM_NOT_ALLOWED_IN_INSTANCE = 717; // 关卡内不能组队
+    EC_TEAM_MEMBER_ACTION_DENY = 718  ;       //队员操作被拒绝
+    EC_TEAM_GUILD_WAR_PVP = 719;//公会战PVP不允许组队
+    EC_TEAM_CAMP_PVP_NOT_ALLOWED_TEAM = 720; // 剑与魔法活动不允许组队
+}
+
+// 战斗操作 [801 - 900]
+enum FightErrorCode 
+{
+    EC_FIGHT_ERROR = 801 ;         // 战斗过程错误
+    
+    EC_DEFENDER_NOT_FOUND = 802 ;   // 防守者未找到
+    EC_DEFENDER_SKILL_NOT_FOUND = 803 ;  // 防守者技能未找到
+    EC_SKILL_HIT_TYPE_INVALID = 804 ;    // 技能命中类型非法
+    EC_SKILL_TARGET_INVALID = 805 ;      // 技能目标非法
+    EC_CHOOSE_COWORKER_FAIL = 806; // 选择技能协助者失败
+    EC_PLAYER_FIGHT_IN_COOL_DOWN = 807 ; // 玩家在战斗冷却中
+    EC_PLAYER_NO_FREE_SKIP_FIGHT = 808 ; // 玩家免费跳过战斗次数已经使用完
+    
+    EC_PLAYER_NOT_IN_AUTO_FIGHT = 809 ; // 玩家不在挂机状态
+    
+    
+    // 挂机
+    EC_ALREADY_IN_AUTO_FIGHT = 810 ; // 已经在挂机状态
+    EC_SCENE_AUTO_FIGHT_LIMIT = 811 ; // 该场景不允许挂机
+    EC_SCENE_AUTO_FIGHT_LEVEL_LIMIT = 812 ; // 等级太低，不允许在该场景挂机
+    EC_TEAM_AUTO_FIGHT_LIMIT = 813 ; // 组队状态无法挂机
+    EC_AUTO_FIGHT_NO_ENOUGH_TIMES = 814 ; // 挂机次数不足
+    EC_SERVER_CREATE_AUTO_FIGHT_TIMER_FAILED = 815 ;// 创建挂机定时器失败
+    EC_CANT_JOIN_TEAM_WHILE_IN_AUTO_FIGHT = 817; // 挂机状态不允许组队
+    
+    // 挂机
+    EC_SPEED_UP_VIP_LIMIT = 816; //只有VIP才能使用加速功能！
+    
+    EC_BATTLE_GROUP_CONFIG_NOT_FOUND = 818 ; // 战斗组配置不存在
+    EC_ALIEN_BOSS_FIGHTER_NOT_FOUND = 819;   // boss fighter 未找到
+    
+    
+    // 切磋
+    EC_SENDER_IN_FIGHT = 820; // 发送者在战斗状态，不能发起切磋
+    EC_INVITEE_IN_FIGHT = 821; // 被邀请者在战斗状态
+    EC_SENDER_NOT_IN_FIGHT_SCENE = 822; // 发起者不在角斗场，不能切磋
+    EC_INVITEE_NOT_IN_FIGHT_SCENE = 823; // 被邀请者不在角斗场，不能切磋
+    EC_TEAM_MEMBER_CANT_INVITE_FIGHT = 824; // 不是队长，不能发起切磋
+    EC_INVITEE_NO_RESPONSE = 825; // 被邀请者无响应
+    EC_INVITEE_NOT_ONLINE = 826;  // 被邀请者不在线
+    EC_TEAM_MEMBER_CANT_ACCEPT_FIGHT = 827; // 邀请者已入队，但不是队长，不能与你切磋
+    EC_CANT_FIGHT_WITH_OWN_TEAM = 828; // 不能跟自己的队伍切磋
+    
+    EC_GUILD_WAR_PVP_YOU_IN_CD = 840; // 你刚刚经过一场激战，请稍候!
+    EC_GUILD_WAR_PVP_OTHER_IN_CD = 841; // 对方刚刚经过一场战斗,目前处于保护期!
+    EC_GUILD_WAR_PVP_SAME_GUILD = 842; //公会战中不允许同公会间进行战斗，前台不该允许这样点！
+    
+    EC_FIGHT_TYPE_DIFF_MONSTER_TYPE = 843; // 怪物类型和战斗类型不符
+    
+    EC_OBJECT_PLAYER_IN_FIGHT = 844; // 目标玩家在战斗中
+}
+
+// 聊天相关 [901 - 1000]
+enum ChatErrorCode
+{
+    EC_CHAT_INVALID_CHANNEL = 901 ;   //非法频道
+    EC_CHAT_INVALID_PLAYER = 902 ;    //非法玩家或不在线
+    EC_CHAT_TOO_FAST = 903 ;          //消息过快
+    EC_CHAT_TOO_LONG = 904 ;          //消息过长
+    EC_CHAT_BLACKLIST = 905 ;         //黑名单,拒绝聊天
+    EC_CHAT_WORLD_LEVEL_LIMIT = 906 ;   //世界频道消息等级限制
+    EC_CHAT_MUTE = 907 ;                //被禁言
+}
+
+
+// 好友相关 [1001 - 1100]
+enum FriendErrorCode
+{
+    EC_FRIEND_INVALID_PLAYER = 1001 ;   //玩家不存在或不在线
+    EC_FRIEND_NOT_FRIEND = 1002 ;       //非好友 
+    EC_FRIEND_ALREADY_FRIEND = 1003 ;   //已经是好友
+    EC_FRIEND_TOO_MANY_FRIEND = 1004 ;   //好友数量超限制
+    EC_FRIEND_IN_BLACKLIST = 1005 ;          //黑名单
+    EC_FRIEND_DENY = 1006 ;              //拒绝
+    EC_FRIEND_PEER_TOO_MANY_FRIEND = 1007 ; //对方好友数量超限制
+}
+
+// 公会相关 [1101 - 1200]
+enum GuildErrorCode
+{
+    EC_GUILD_CREATE_LEVEL_NOT_ENOUGH = 1101; //玩家等级需要达到30级才能创建公会！
+    EC_GUILD_INVALID_NAME = 1102;  //公会名字不符合要求！
+    EC_GUILD_NAME_LENGTH_LIMIT = 1103; //公会名称不能超过七个中文字符！
+    EC_GUILD_EXIST = 1104;    //公会名称已存在，请重新输入！
+    EC_GUILD_NOT_EXIST = 1105 ;          //工会不存在
+    EC_GUILD_MEMBER_EXIST = 1106 ;        //已在工会正式列表中
+    EC_GUILD_MEMBER_NOT_EXIST = 1107 ;     //不在工会正式列表中
+    EC_GUILD_PERMISSION_DENY = 1108 ;    //权限不足
+    EC_GUILD_IN_GUILD_WAR = 1144; //在工会战中，无法操作
+    EC_CREATE_GUILD_FAILED = 1109 ; // 创建公会失败
+    EC_INVITE_MEMBER_ALREADY_IN_GUILD = 1110; // 邀请者已经有公会
+    EC_GUILD_JOIN_LEVEL_LIMIT = 1111 ;    //加入工会等级限制
+    EC_GUILD_MEMBER_FULL = 1112 ;         //工会人数已满
+    EC_GUILD_TIME_LIMIT = 1113 ;         //加入工会时间限制
+    EC_SKILL_LEVEL_GREAT_THAN_COLLEGE_LEVEL = 1114; // 技能等级大于空间学院等级
+    EC_RESEARCH_SKILL_COUNT_LIMIT = 1115; // 同时可研发技能达到最大个数
+    EC_GUILD_SKILL_CONFIG_NOT_FOUND = 1116; // 公会技能配置不存在
+    EC_GUILD_EXP_NOT_ENOUGH = 1117; // 公会能量不足
+    EC_GUILD_MONEY_NOT_ENOUGH = 1118; // 公会水晶不足
+    EC_GUILD_SKILL_MAX_LEVEL = 1119; // 公会技能达到最大级
+    EC_GUILD_SKILL_NOT_FOUND = 1120; // 公会技能未找到
+    EC_GUILD_SKILL_IS_RESEARCHING = 1121; // 公会技能正在修炼中
+    EC_GUILD_COLLEGE_NOT_EXIST = 1122; // 学院不存在
+    EC_GUILD_CONTRIBUTION_NOT_ENOUGH = 1123; // 公会贡献度不够
+    EC_GUILD_BUILDING_GRADE_LIMIT = 1124 ;  //建筑等级不能超过工会等级
+    EC_GUILD_NOT_IN_GUILD = 1125;		// 没有加入公会, 不能使用公会功能
+    EC_GUILD_NOT_IN_APPLY_LIST = 1126 ;    //不在工会申请列表中
+    EC_GUILD_NOT_IN_INVITE_LIST = 1127 ;   //不在工会邀请列表中
+    EC_GUILD_TEAM_NOT_ALL_MEMBER = 1128 ;       //队伍中存在非工会成员
+    EC_GUILD_CRYSTAL_TOWER_TIME_LIMIT = 1129;  //公会水晶塔 时间限制
+    EC_GUILD_LEARN_NOT_RESEARCH = 1130 ; //技能未研发
+    EC_GUILD_LEARN_INVALID_LEVEL = 1131 ; //技能等级错误
+    
+    EC_GUILD_WAR_BOSS_NPC_NOT_FOUND = 1132; // 公会战boss npc无法找到
+    
+    
+
+	EC_GUILD_WAR_PVP_ENTER_NOT_OPEN = 1140; //比赛还未开始不能进入！
+	EC_GUILD_WAR_PVP_ENTER_ALREADY_STARTED = 1141; //工会站正在进行中，无法新加入战场
+	EC_GUILD_WAR_PVP_ENTER_IN_TEAM = 1142; //组队时无法进入比赛场地！
+	EC_GUILD_WAR_PVP_ENTER_GUILD_NOT_IN = 1143; //您的公会没有获得公会战参赛资格！
+}
+
+// 礼包、兑换码、奖励相关 [1201 - 1300]
+enum GiftErrorCode
+{
+    EC_INVALID_EXCHANGE_CODE = 1201;    // 无效兑换码
+	EC_USED_EXCHANGE_CODE = 1202;    // 兑换码已经使用过
+	EC_ALREADY_EXCHANGED_THIS_TYPE = 1203; // 玩家已经兑换过
+    EC_NO_GIFT_TO_TAKE = 1204; // 无可领礼包
+    EC_ACTIVITY_EXPIRED = 1205; // 活动已经过期
+    EC_ACTIVITY_NOT_OPEN = 1206; // 活动未开启
+    EC_BOSS_ENCOURAGE_FAILED = 1207 ; // 鼓舞失败
+    EC_BOSS_BUFF_FULL = 1208; // BOSS鼓舞buff已经达到最大值
+    EC_BOSS_MAP_CANT_TEAM = 1209; // boss地图不允许组队
+    EC_NO_LUCKY_TIME_LEFT = 1210; // 没有剩余抽奖次数
+    EC_NO_ENOUGH_CREDITS = 1211; //  可用积分不足
+    EC_ACT_NOT_ALLOWED_FROM_INSTANCE = 1212;// 活动不能从关卡中进入
+    EC_ACT_NOT_ALLOWED_FROM_GUILD = 1213; // 活动不能从公会地图进入
+    EC_NO_MAP_BORN_PLACE_CONFIG = 1214; // 未找到地图出生点配置
+    EC_PVP_MAP_CANT_TEAM = 1215; // pvp地图不允许组队
+    EC_PVP_PLAYER_IN_PROTECTED = 1216; // pvp 玩家处在保护状态
+    EC_PVP_PLAYER_IN_INSTANCE = 1217; // pvp 不允许在关卡中
+    EC_PLAYER_NOT_IN_PVP_MAP = 1218; // 玩家不在pvp地图中
+    EC_DEFENDER_LEVEL_LIMIT = 1219; // 被挑战者等级不足
+    EC_PVP_DEFENDER_IN_INSTANCE = 1220; // 被挑战者在关卡中
+    EC_PVP_DEFENDER_IN_PROTECTED = 1221; // 被挑战者在保护状态
+    EC_DEFENDER_NOT_IN_PVP_MAP = 1222; // 被挑战者不在pvp地图
+    EC_PLAYER_NOT_IN_SAME_PVP_LEVEL = 1223; // 玩家不在同一个pvp层
+    EC_PVP_LEVEL_DATA_NOT_FOUND = 1224; // pvp层数据未找到
+    EC_PVP_ROBOT_LINEUP_INVALID = 1225; // pvp机器人阵型出错
+    EC_PVP_TOP_LEVEL = 1226; // pvp 已经到达最顶层
+    EC_PVP_NOT_IN_TOP_LEVEL = 1227; // 玩家不在pvp顶层
+    EC_PVP_WINNER_BONUS_DATA_NOT_FOUND = 1228; // pvp胜利玩家奖励数据未找到
+    EC_PVP_NOT_ALLOWED_FROM_BOSS = 1229; // (pvp活动)请先离开boss地图
+    EC_BOSS_NOT_ALLOWED_FROM_PVP = 1230; // (boss活动) 请先离开pvp地图
+    EC_GUILD_WAR_BOSS_DAMAGE_BUFF_FULL = 1231; // (公会战)钻石虚弱buff已满
+    EC_GUILD_WAR_BOSS_DEFENCE_BUFF_FULL = 1232; // (公会战)钻石破防buff已满
+    EC_ALREADY_TAKE_BONUS = 1233; // 玩家已经领取过宝箱
+    EC_TREASURE_BOX_TIMEOUT = 1234; // 宝箱已经超时消失
+    EC_GUILD_WAR_BOSS_DEAD = 1235; // 公会战boss已经消失
+    
+    EC_NO_TRANSPORT_DATA_CONFIG_FOUND = 1236; // 无传送阵配置数据
+    EC_IN_RE_ENTER_ACT_COOLDOWN = 1237; // 重新进入地图冷却中
+    EC_INVALID_TRANSPORT_ID = 1238; // 无效的传送阵id
+    EC_PLAYER_NOT_IN_TIMESPACE_ACT_MAP = 1239; // 玩家不在时空裂隙地图
+    EC_BOSS_CANT_FIGHT = 1240; // boss不能战斗
+    EC_DEFENDER_NOT_IN_TIMESPACE_ACT_MAP = 1241; // 目标玩家不在时空裂隙地图
+    EC_MEMBER_NOT_ALLOWED_OPERATION = 1242; // 队员不允许操作
+    
+    EC_VIRTUAL_SPACE_LEVEL_INST_CANT_FIND = 1243; // 虚空层实例未找到
+    EC_ACT_NOT_ALLOWED_IN_TEAM = 1244; // 活动不允许组队
+    EC_NO_VIRTUAL_SPACE_TO_FIGHT = 1245; // 没有可自动通关的层
+    EC_NO_ENOUGH_DEBRIS = 1246; // 没有足够的碎片
+    EC_VIRTUAL_SPACE_ALREADY_PASSED = 1247;  // 无尽虚空已经通关
+    
+    EC_LEVEL_LIMIT_IN_TIME_SPACE = 1248; // 等级达到30级才能参加位面裂隙！
+    
+    EC_NO_OFFLINE_EXP_TO_TAKE = 1249; // 没有离线经验可领取
+    
+    EC_ACTIVITY_IS_OPENNING = 1250; // 活动开启中
+}
+
+enum LivenessErrorCode
+{
+    EC_LIVENESS_INVALID_AWARD = 1251 ;    //奖励不存在
+    EC_LIVENESS_TAKEN_AWARD = 1252 ;     //奖励已领取
+    EC_LIVENESS_CONDITION_LIMIT   = 1253  ;        //领取条件不足
+}
+
+enum ConfigErrorCode
+{
+    EC_CONFIG_DENY_TEAM_INVITE = 1281 ; //禁止非好友组队邀请
+    EC_CONFIG_DENY_GUILD_INVITE = 1282 ; //禁止非好友工会邀请
+    EC_CONFIG_DENY_FIGHT = 1283  ;    //禁止非好友切磋邀请
+    EC_CONFIG_DENY_TALK = 1284 ;       //禁止非好友聊天
+}
+
+//  [1301 - 1400]
+enum InstanceErrorCode
+{
+    EC_INSTANCE_TELEPORT_LIMIT = 1301 ;      //关卡内不能使用飞鞋
+    EC_INSTANCE_NEED_TEAM = 1302 ;       //进入关卡需要组队
+    EC_INSTANCE_NEED_SINGLE = 1303 ;      //进入关卡需要单人
+    EC_INSTANCE_GRADE_LIMIT = 1304 ;      //已通过关卡级别限制
+    EC_NO_INSTANCE_DATA_FOUND = 1305 ;    // 关卡数据未找到
+    EC_INSTANCE_WANTED_DB_DATA_ERROR = 1306 ; // 关卡db数据出错
+    EC_NO_INSTANCE_WANTED_TIME_LEFT = 1307;  // 无剩余翻牌次数
+    EC_INSTANCE_CARD_ALREADY_FLIPPED = 1308;  // 此卡片已经翻过
+    EC_NO_INSTANCE_WANTED_CONFIG_DATA = 1309; // 无此关卡的通缉配置
+    EC_WRONG_INSTANCE_WANTED_CONFIG_DATA = 1310; // 错误的关卡通缉配置
+    EC_INSTANCE_USE_ITEM_DENY = 1311 ;      //关卡内无法使用物品
+    EC_NO_INSTANCE_CONFIG_DATA = 1312; // 关卡配置数据未找到
+    EC_TEAM_INSTANCE_NOT_ALLOWED_AUTO_FIGHT = 1313; // 组队关卡不允许扫荡
+    EC_ALREADY_IN_AUTO_FIGHT_INSTANCE = 1314; // 已经在扫荡状态
+    EC_AUTO_FIGHT_INSTANCE_TIME_NOT_FOUND = 1315; // 扫荡时间配置未找到
+    EC_NOT_IN_AUTO_INSTANCE_FIGHT = 1316; // 玩家不在扫荡状态
+    EC_INSTANCE_NOT_PASSED = 1317 ; // 关卡未通关
+}
+
+//	[1401 - 1450]
+enum PassTeamErrorCode
+{
+	EC_PASS_ROOM_NOT_EXIST	 = 1401	;	//该房间不存在
+	EC_PASS_ROOM_FULL		 = 1402 ;   //房间人满
+	EC_NO_SUITE_PASS_ROOM    = 1403 ; 	//没有合适的房间
+	EC_FAIL_PWD				 = 1404 ;	//密码不正确
+	EC_NOT_ALL_READY		 = 1405 ;   //有玩家没有准备
+}
+// [1500-1510]
+enum BuddySoulErrorCode
+{
+	EC_NOT_ENOUGH_SOUL_STONE		= 1500;	//灵魂石不够
+	EC_MAX_SOUL_LEVEL 				= 1501;//到达灵魂最大等级
+}
+
+enum CampErrorCode
+{
+    EC_NO_CAMP                      = 1511; // 没有阵营
+    EC_WRONG_CAMP                   = 1512;  // 阵营不匹配
+    EC_ALREADY_JOIN_FIGHT           =1513 ; 
+    EC_CAMP_BUFF_LIMIT              =1514 ;
+    EC_IN_TEAM                      = 1515 ;
+    EC_CONFLICT_ACTIVITY           = 1516 ;
+}
+
+// [1520-1540]
+enum ChargeActivityErrorCode
+{
+	EC_NOT_OPEN 				    = 1520; //活动未开放
+	EC_INVALID_ITEM_ID 				= 1521; //物品id错误
+	EC_INVALID_TIME 				= 1522; //时间错误	
+}

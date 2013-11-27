@@ -1,0 +1,55 @@
+// 统计数据定义
+
+package protocols.statistics ;
+
+import "game_common.proto" ;
+
+// 玩家id,职业,品质,等级,关卡id,关卡难度,战斗组id,胜负结果,玩家方死亡单位数,当前灵魂,灵魂上限,
+// 头盔id,强化等级,项链ID,强化等级,护肩id,强化等级,盔甲id,强化等级,腰带id,强化等级,
+// 武器id,强化等级,手套id,强化等级,护腕id,强化等级,戒指1id,强化等级,,戒指2ID,强化等级,鞋子id,强化等级,
+// 主动技能1,技能等级,被动技能,技能等级,主动技能2,技能等级,自由技能,技能等级,
+// 二人战法,战法等级,三人战法,战法等级,
+
+// 玩家id,职业,品质,等级,战斗组id,胜负结果,玩家方死亡单位数,当前灵魂,灵魂上限,
+message PlayerStatBaseInfo
+{
+    required int32  role_id = 1 [default = 0];
+    optional int32  profession = 2 [default = 0];
+    optional int32  quality = 3 [default = 0];
+    optional int32  prof_level = 4 [default = 0];
+    optional int32  cur_soul = 5 [default = 0];
+    optional int32  max_soul = 6 [default = 0];
+}
+
+// 头盔id,强化等级,项链ID,强化等级,护肩id,强化等级,盔甲id,强化等级,腰带id,强化等级,武器id,强化等级,
+// 副武器id,强化等级,手套id,强化等级,护腕id,强化等级,戒指1id,强化等级,戒指2ID,强化等级,鞋子id,强化等级,
+message EquipStrengthInfo
+{
+    optional int32 helmet = 1 [default = 0]; // 头盔id
+    optional int32 helmet_level = 2 [default = 0]; // 强化等级
+    optional int32 necklace = 3 [default = 0]; // 项链1 id
+    optional int32 necklace_level = 4 [default = 0]; 
+    optional int32 shoulder_guards = 7 [default = 0]; // 护肩
+    optional int32 shoulder_guards_level = 8 [default = 0];
+    optional int32 armor = 9 [default = 0]; // 盔甲
+    optional int32 armor_level = 10 [default = 0];
+    optional int32 waistband = 11 [default = 0]; // 腰带
+    optional int32 waistband_level = 12 [default = 0]; 
+    optional int32 weapon = 13 [default = 0]; 
+    optional int32 weapon_level = 14 [default = 0];
+    optional int32 assist_weapon = 25 [default = 0]; // 副武器
+    optional int32 assist_weapon_level = 26 [default = 0];
+    optional int32 gloves = 15 [default = 0]; // 手套
+    optional int32 gloves_level = 16 [default = 0];
+    optional int32 wrist_band = 17 [default = 0]; // 护腕
+    optional int32 wrist_level = 18 [default = 0]; 
+    optional int32 ring_1_id = 19 [default = 0]; 
+    optional int32 ring_1_level = 20 [default = 0];
+    optional int32 ring_2_id = 21 [default = 0];
+    optional int32 ring_2_level = 22 [default = 0];
+    optional int32 shoes = 23 [default = 0]; 
+    optional int32 shoes_level = 24 [default = 0]; 
+}
+
+
+

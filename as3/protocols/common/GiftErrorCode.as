@@ -1,0 +1,54 @@
+package protocols.common {
+	public final class GiftErrorCode {
+		public static const EC_INVALID_EXCHANGE_CODE:int = 1201;
+		public static const EC_USED_EXCHANGE_CODE:int = 1202;
+		public static const EC_ALREADY_EXCHANGED_THIS_TYPE:int = 1203;
+		public static const EC_NO_GIFT_TO_TAKE:int = 1204;
+		public static const EC_ACTIVITY_EXPIRED:int = 1205;
+		public static const EC_ACTIVITY_NOT_OPEN:int = 1206;
+		public static const EC_BOSS_ENCOURAGE_FAILED:int = 1207;
+		public static const EC_BOSS_BUFF_FULL:int = 1208;
+		public static const EC_BOSS_MAP_CANT_TEAM:int = 1209;
+		public static const EC_NO_LUCKY_TIME_LEFT:int = 1210;
+		public static const EC_NO_ENOUGH_CREDITS:int = 1211;
+		public static const EC_ACT_NOT_ALLOWED_FROM_INSTANCE:int = 1212;
+		public static const EC_ACT_NOT_ALLOWED_FROM_GUILD:int = 1213;
+		public static const EC_NO_MAP_BORN_PLACE_CONFIG:int = 1214;
+		public static const EC_PVP_MAP_CANT_TEAM:int = 1215;
+		public static const EC_PVP_PLAYER_IN_PROTECTED:int = 1216;
+		public static const EC_PVP_PLAYER_IN_INSTANCE:int = 1217;
+		public static const EC_PLAYER_NOT_IN_PVP_MAP:int = 1218;
+		public static const EC_DEFENDER_LEVEL_LIMIT:int = 1219;
+		public static const EC_PVP_DEFENDER_IN_INSTANCE:int = 1220;
+		public static const EC_PVP_DEFENDER_IN_PROTECTED:int = 1221;
+		public static const EC_DEFENDER_NOT_IN_PVP_MAP:int = 1222;
+		public static const EC_PLAYER_NOT_IN_SAME_PVP_LEVEL:int = 1223;
+		public static const EC_PVP_LEVEL_DATA_NOT_FOUND:int = 1224;
+		public static const EC_PVP_ROBOT_LINEUP_INVALID:int = 1225;
+		public static const EC_PVP_TOP_LEVEL:int = 1226;
+		public static const EC_PVP_NOT_IN_TOP_LEVEL:int = 1227;
+		public static const EC_PVP_WINNER_BONUS_DATA_NOT_FOUND:int = 1228;
+		public static const EC_PVP_NOT_ALLOWED_FROM_BOSS:int = 1229;
+		public static const EC_BOSS_NOT_ALLOWED_FROM_PVP:int = 1230;
+		public static const EC_GUILD_WAR_BOSS_DAMAGE_BUFF_FULL:int = 1231;
+		public static const EC_GUILD_WAR_BOSS_DEFENCE_BUFF_FULL:int = 1232;
+		public static const EC_ALREADY_TAKE_BONUS:int = 1233;
+		public static const EC_TREASURE_BOX_TIMEOUT:int = 1234;
+		public static const EC_GUILD_WAR_BOSS_DEAD:int = 1235;
+		public static const EC_NO_TRANSPORT_DATA_CONFIG_FOUND:int = 1236;
+		public static const EC_IN_RE_ENTER_ACT_COOLDOWN:int = 1237;
+		public static const EC_INVALID_TRANSPORT_ID:int = 1238;
+		public static const EC_PLAYER_NOT_IN_TIMESPACE_ACT_MAP:int = 1239;
+		public static const EC_BOSS_CANT_FIGHT:int = 1240;
+		public static const EC_DEFENDER_NOT_IN_TIMESPACE_ACT_MAP:int = 1241;
+		public static const EC_MEMBER_NOT_ALLOWED_OPERATION:int = 1242;
+		public static const EC_VIRTUAL_SPACE_LEVEL_INST_CANT_FIND:int = 1243;
+		public static const EC_ACT_NOT_ALLOWED_IN_TEAM:int = 1244;
+		public static const EC_NO_VIRTUAL_SPACE_TO_FIGHT:int = 1245;
+		public static const EC_NO_ENOUGH_DEBRIS:int = 1246;
+		public static const EC_VIRTUAL_SPACE_ALREADY_PASSED:int = 1247;
+		public static const EC_LEVEL_LIMIT_IN_TIME_SPACE:int = 1248;
+		public static const EC_NO_OFFLINE_EXP_TO_TAKE:int = 1249;
+		public static const EC_ACTIVITY_IS_OPENNING:int = 1250;
+	}
+}

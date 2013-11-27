@@ -1,0 +1,16 @@
+
+package protocols.common ;
+
+import "game_common.proto" ;
+
+message PlayerLoginRequest
+{
+    required int32 uid = 1;
+    required string pwd = 2;
+
+}
+
+message PlayerLoginResponse
+{
+    required int32 error_code = 1;
+}
